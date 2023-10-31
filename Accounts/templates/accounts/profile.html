@@ -1,0 +1,149 @@
+{% include 'accounts/header.html' %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+  </head>
+  <body>
+    <!--app-content open-->
+    <div class="main-content app-content mt-18">
+      <div class="side-app">
+        <!-- CONTAINER -->
+        <div class="main-container container-fluid">
+          <!-- PAGE-HEADER -->
+          <div class="page-header">
+            <h1 class="page-title">Profile View</h1>
+          </div>
+          <!-- PAGE-HEADER END -->
+          <!-- ROW-1 OPEN -->
+          <div class="row">
+            <div class="col-xl-4">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">Profile</div>
+                </div>
+                <div class="card-body">
+                  <div class="text-center chat-image mb-5">
+                    <div class="avatar avatar-xxl chat-profile mb-3 brround">
+                      <a class="" href="profile.php"
+                        ><img
+                          alt="avatar"
+                          src="{% static 'assets/images_ex/user.png' %}"
+                          class="brround"
+                      /></a>
+                    </div>
+                    <div class="main-chat-msg-name">
+                      <a href="profile.html">
+                        <h5 class="mb-1 text-dark fw-semibold">{{request.user}}</h5>
+                      </a>
+                      <p class="text-muted mt-0 mb-0 pt-0 fs-13">{{request.user.email}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-8">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Edit Password</h3>
+                </div>
+
+<div class="card-body">
+<form method="post" action="{% url 'password_change' %}" class="was-validation">
+    {% csrf_token %}
+    <div class="row">
+        <div class="form-group">
+            <label class="form-label">Current Password</label>
+            <div class="input-group">
+                <input
+                    name="old_password"
+                    class="form-control"
+                    type="password"
+                    placeholder="Current Password"
+                    required
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">New Password</label>
+            <div class="input-group">
+                <input
+                    name="new_password1"
+                    class="form-control"
+                    type="password"
+                    placeholder="New Password"
+                    required
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Confirm Password</label>
+            <div class="input-group">
+                <input
+                    name="new_password2"
+                    class="form-control"
+                    type="password"
+                    placeholder="Confirm Password"
+                    required
+                />
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-end">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{% url 'home' %}" class="btn btn-danger">Cancel</a>
+    </div>
+<ul class="list-unstyled">
+{% if form.errors %}
+      {% for field in form %}
+
+           {% for error in field.errors %}
+             <h4> {{ error|escape }}</h4>
+           {% endfor %}
+
+      {% endfor %}
+{% endif %}
+</ul>
+
+
+</form>
+</div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ROW-1 CLOSED -->
+      </div>
+
+    </div>
+  </body>
+     <!-- JQUERY JS -->
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- SHOW PASSWORD JS -->
+    <script src="{% static 'assets/js/show-password.min.js' %}"></script>
+
+    <!-- GENERATE OTP JS -->
+    <script src="{% static 'assets/js/generate-otp.js' %}"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="{% static 'assets/plugins/p-scroll/perfect-scrollbar.js' %}"></script>
+
+    <!-- Color Theme js -->
+    <script src="{% static 'assets/js/themeColors.js' %}"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+</html>
+<!--app-content close-->
